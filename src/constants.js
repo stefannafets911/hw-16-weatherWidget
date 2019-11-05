@@ -1,0 +1,5 @@
+module.exports = {
+    GET_WEATHER: 'GET_WEATHER',
+    SET_WEATHER: 'SET_WEATHER',
+    TOGGLE_MODAL: 'TOGGLE_MODAL',
+};
