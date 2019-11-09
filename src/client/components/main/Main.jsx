@@ -33,8 +33,8 @@ export class Main extends PureComponent {
         getDescriptionState: PropTypes.string.isRequired,
     };
 
-    getWeather = (e) => {
-        this.props.getWeather(e.target.id);
+    getWeather = (cityName) => {
+        this.props.getWeather(cityName);
         this.props.toggleModal();
     };
 
@@ -57,27 +57,27 @@ export class Main extends PureComponent {
             <Wrapper isModalOpen={isModalOpen}>
                 <MainBars onClick={toggleModal} isModalOpen={isModalOpen}/>
                 <WeatherBlock getTempState={getTempState}>
-                    <WeatherTemp
-                        children={ getTempState ? Math.round(getTempState - 270) + '°' : '' }
-                    />
+                    <WeatherTemp>
+                        { getTempState ? Math.round(getTempState - 270) + '°' : '' }
+                    </WeatherTemp>
                     <WeatherInnerBlock>
                         <WeatherIcon
                             src = { getIconState ? `https://openweathermap.org/img/w/${getIconState}.png` : '' }
                         />
-                        <WeatherDescription
-                            children = { getDescriptionState }
-                        />
+                        <WeatherDescription>
+                            { getDescriptionState }
+                        </WeatherDescription>
                     </WeatherInnerBlock>
-                    <WeatherCity
-                        children = { getCityState }
-                    />
+                    <WeatherCity>
+                        { getCityState }
+                    </WeatherCity>
                     <WeatherAdditionalInf>
-                        <WeatherHumidity getHumidityState={getHumidityState}
-                            children = {getHumidityState + '%'}
-                        />
-                        <WeatherPressure getPressureState={getPressureState}
-                            children = {getPressureState}
-                        />
+                        <WeatherHumidity>
+                            {getHumidityState + '%'}
+                        </WeatherHumidity>
+                        <WeatherPressure>
+                            {getPressureState}
+                        </WeatherPressure>
                     </WeatherAdditionalInf>
                 </WeatherBlock>
                 <Modal
@@ -85,26 +85,25 @@ export class Main extends PureComponent {
                     onClose={toggleModal}>
                     <CityColumn>
                         <CityButton
-                            id = {'London'}
-                            children = {'London'}
-                            onClick={((e) => getWeather(e))}
-                        />
+                            onClick={(() => getWeather('London'))}
+                            isActive={getCityState === 'London'}>
+                            {'London'}
+                        </CityButton>
                         <CityButton
-                            id = {'Rome'}
-                            children = {'Rome'}
-                            onClick={((e) => getWeather(e))}
-                        />
+                            onClick={(() => getWeather('Rome'))}
+                            isActive={getCityState === 'Rome'}>
+                            {'Rome'}
+                        </CityButton>
                         <CityButton
-                            id = {'Kiev'}
-                            children = {'Kiev'}
-                            onClick={((e) => getWeather(e))}
-                        />
-
+                            onClick={(() => getWeather('Kiev'))}
+                            isActive={getCityState === 'Kiev'}>
+                            {'Kiev'}
+                        </CityButton>
                         <CityButton
-                            id = {'Munich'}
-                            children = {'Munich'}
-                            onClick={((e) => getWeather(e))}
-                        />
+                            onClick={(() => getWeather('Munich'))}
+                            isActive={getCityState === 'Munich'}>
+                            {'Munich'}
+                        </CityButton>
                     </CityColumn>
                 </Modal>
             </Wrapper>

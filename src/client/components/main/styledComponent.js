@@ -18,16 +18,17 @@ export const CityColumn = styled.div`
     padding: 40px 20px 0 20px;
 `;
 
-export const CityButton = styled.button`
+export const CityButton = styled.div`
     display: block;
     width: 100%;
-    border: 0;
     color: white;
-    background: #8556ad;
+    background: ${props => props.isActive ? '#856FD7' : '#4b4562'};
     font-size: 20px;
+    font-family: sans-serif;
     text-align: center;
     margin-bottom: 10px;
     height: 35px;
+    line-height: 35px;
     border-radius: 6px;
 `;
 
@@ -77,7 +78,7 @@ export const WeatherHumidity = styled.div.attrs({
 })`
     color: white;
     font-size: 1.5rem;
-    display: ${props => props.getHumidityState ? 'block' : 'none'};
+    display: block;
     :before{
         margin-right: 10px;
     }
@@ -88,13 +89,13 @@ export const WeatherPressure = styled.div.attrs({
 })`
     color: white;
     font-size: 1.5rem;
-    display: ${props => props.getPressureState ? 'block' : 'none'};
+    display: block;
     :before{
         margin-right: 10px;
     }
 `;
 
-export const WeatherDescription = styled.div`ModalSettings
+export const WeatherDescription = styled.div`
     color: white;
     text-shadow: 0 0 7px #00000059;
     display: flex;
